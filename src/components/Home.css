@@ -1,0 +1,10 @@
+.home {
+    border: 2px solid red;
+}
+
+.homeProduct {
+    margin: 0 10px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+}
