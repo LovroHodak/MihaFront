@@ -1,5 +1,5 @@
 import React from "react";
-import './Cart.css'
+import "./Cart.css";
 import { Link } from "react-router-dom";
 
 export default function Cart({
@@ -7,21 +7,30 @@ export default function Cart({
   initalState,
   handleAddToCart,
   handleDeleteFromCart,
+  total,
 }) {
   return (
     <div>
       <h1>Cart</h1>
       <div>
-          {products.map((product) => {
-              if(product.nrOfItems === initalState[product.id].nrOfItems){
-                return <div key={product.id}></div>
-              } else {
-                  return (
-                      <div key={product.id}>
-                      <p>Name: {product.name}</p>
+        {products.map((product) => {
+          if (product.nrOfItems === initalState[product.id].nrOfItems) {
+            return <div key={product.id}></div>;
+          } else {
+            return (
+              <div key={product.id}>
+                <p>Name: {product.name}</p>
                 <p>
                   Nr. of Items:
-                  {initalState[product.id].nrOfItems - product.nrOfItems}
+                  <b>{initalState[product.id].nrOfItems - product.nrOfItems}</b>
+                </p>
+                <p>
+                  Price:{" "}
+                  <b>
+                    {(initalState[product.id].nrOfItems - product.nrOfItems) *
+                      product.price}
+                  </b>{" "}
+                  €
                 </p>
                 <button onClick={() => handleAddToCart(product.id)}>
                   Add To basket
@@ -29,12 +38,21 @@ export default function Cart({
                 <button onClick={() => handleDeleteFromCart(product.id)}>
                   Delete from basket
                 </button>
-                      </div>
-                  )
-              }
-          })}
+              </div>
+            );
+          }
+        })}
       </div>
-      {products === initalState ? (<></>) : (<Link to='/order'><button className='orderButton'>Order</button></Link>)}
+      {products === initalState ? (
+        <></>
+      ) : (
+        <div>
+          <h1>Total: {total}€</h1>
+          <Link to="/order">
+            <button className="orderButton">Order</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

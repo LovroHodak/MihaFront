@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+Simple shop front-end only RFC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HOME 
+-default Maping through all products
+-each product name is a Link to that product Detail
+-each product also has a AddToBasket button and once you added something 
+new DeleteFromBasket button appears
 
-## Available Scripts
+NAVBAR
+-default 3 links
+a) info is irelevant
+b) home - Link to Home
+c) 2 states: cartItems by default 0 and cartTotal by default 0
+-each time someone presses AddToBuTTon or DeleteFromButton both states change
 
-In the project directory, you can run:
+DETAIL
+-default info about 1 product and AddToCart button
+-after pressing addToCart new button DeleteFromCart appears
 
-### `npm start`
+CART
+-default empty
+-items you added in Home or Detail appear in Cart 
+-you can increase or decrease number of items in Cart as well
+-sum of same items is calculated and total sum is calculated
+-Order Button is a Link to client details
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ORDER
+-default you see your ordered products and there is a email input
+-note that at this very last step in Navbar there is still BasketItems and Total
+-after you fill in email and press Send you get redirected to OrderSucces
+-Send also changes Navbar states to 0, and changes state of all products to new amount
+so without of those products that have been sold... so if you go back to Home page
+you will see that Stock of all products has changed
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ORDERSUCCESS
+-default shows email of client who ordered

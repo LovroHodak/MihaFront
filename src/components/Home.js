@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home({
   products,
@@ -14,11 +15,16 @@ export default function Home({
         {products.map((product) => {
           return (
             <div key={product.id} className="homeProduct">
-              <p>
-                Name: <b>{product.name}</b>
-              </p>
+              <Link to={`/detail/${product.id}`}>
+                <p>
+                  Name: <b>{product.name}</b>
+                </p>
+              </Link>
               <p>
                 Stock: <b>{product.nrOfItems}</b>
+              </p>
+              <p>
+                Price: <b>{product.price} €</b>
               </p>
               <button onClick={() => handleAddToCart(product.id)}>
                 add to basket
