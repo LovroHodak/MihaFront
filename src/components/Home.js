@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Home({
   products,
-  initalState,
+  initialState,
   handleDeleteFromCart,
   handleAddToCart,
 }) {
@@ -29,7 +29,7 @@ export default function Home({
               <button onClick={() => handleAddToCart(product.id)}>
                 add to basket
               </button>
-              {product.nrOfItems === initalState[product.id].nrOfItems ? (
+              {product.nrOfItems === initialState[product.id].nrOfItems ? (
                 <></>
               ) : (
                 <button onClick={() => handleDeleteFromCart(product.id)}>

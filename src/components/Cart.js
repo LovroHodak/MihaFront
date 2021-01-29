@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Cart({
   products,
-  initalState,
+  initialState,
   handleAddToCart,
   handleDeleteFromCart,
   total,
@@ -14,7 +14,7 @@ export default function Cart({
       <h1>Cart</h1>
       <div>
         {products.map((product) => {
-          if (product.nrOfItems === initalState[product.id].nrOfItems) {
+          if (product.nrOfItems === initialState[product.id].nrOfItems) {
             return <div key={product.id}></div>;
           } else {
             return (
@@ -22,12 +22,12 @@ export default function Cart({
                 <p>Name: {product.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>{initalState[product.id].nrOfItems - product.nrOfItems}</b>
+                  <b>{initialState[product.id].nrOfItems - product.nrOfItems}</b>
                 </p>
                 <p>
                   Price:
                   <b>
-                    {(initalState[product.id].nrOfItems - product.nrOfItems) *
+                    {(initialState[product.id].nrOfItems - product.nrOfItems) *
                       product.price}
                   </b>
                   €
@@ -43,7 +43,7 @@ export default function Cart({
           }
         })}
       </div>
-      {products === initalState ? (
+      {products === initialState ? (
         <></>
       ) : (
         <div>

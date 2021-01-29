@@ -16,13 +16,16 @@ import data from "./data";
 
 
 function App() {
-  const [initalState, setInitalState] = useState(data);
-  const [products, setProducts] = useState(initalState);
+  const [initialState, setInitialState] = useState(data);
+  const [products, setProducts] = useState(initialState);
   const [userData, setUserData] = useState([]);
+  const [userOrderHistory, setUserOrderHistory] = useState([])
   const [basketItems, setBasketItems] = useState(0);
   const [total, setTotal] = useState(0);
 
   let history = useHistory();
+
+ 
 
   const handleAddToCart = (id) => {
     const newProducts = products.map((product) => {
@@ -39,6 +42,11 @@ function App() {
     setProducts(newProducts);
     setBasketItems(basketItems + 1);
     setTotal(total + products[id].price);
+    setUserOrderHistory([{
+      name: products[id].name,
+      price: products[id].price * ((initialState[id].nrOfItems - products[id].nrOfItems) + 1),
+      nrOfItems: (initialState[id].nrOfItems - products[id].nrOfItems) + 1
+    }, ...userOrderHistory])
   };
 
   const handleDeleteFromCart = (id) => {
@@ -56,10 +64,15 @@ function App() {
     setProducts(newProducts);
     setBasketItems(basketItems - 1);
     setTotal(total - products[id].price);
+    setUserOrderHistory([{
+      name: products[id].name,
+      price: products[id].price * ((initialState[id].nrOfItems - products[id].nrOfItems) -1),
+      nrOfItems: (initialState[id].nrOfItems - products[id].nrOfItems) - 1
+    }, ...userOrderHistory])
   };
 
   const handleShip = () => {
-    setInitalState(products);
+    setInitialState(products);
     setBasketItems(0);
     setTotal(0);
     history.push("/orderSuccess");
@@ -73,8 +86,6 @@ function App() {
     let yyyy = date.getFullYear();
     date = dd + "/" + mm + "/" + yyyy;
 
-    
-
     setUserData([{
       date: date,
       email: e.target.email.value,
@@ -82,10 +93,6 @@ function App() {
       lastname: e.target.lastname.value,
       street: e.target.street.value,
       city: e.target.city.value,
-      itemName: '',
-      howManyItems: 0,
-      sameItemsPrice: 0,
-      totalItemsPrice: 0
     }, ...userData])
     handleShip();
   };
@@ -94,6 +101,15 @@ function App() {
 
   return (
     <div className="app">
+    <div>
+    {userOrderHistory.map((user) => {
+      return (<div><p>{user.name}</p><p>{user.price}</p><p>{user.nrOfItems}</p></div>)
+    })}
+    </div>
+
+    {/* <p>{userOrderHistory.name}</p>
+    <p>{userOrderHistory.price}</p>
+    <p>{userOrderHistory.nrOfItems}</p> */}
       <Navbar basketItems={basketItems} total={total} />
       <Switch>
         <Route
@@ -103,7 +119,7 @@ function App() {
             return (
               <Home
                 products={products}
-                initalState={initalState}
+                initialState={initialState}
                 handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
               />
@@ -117,7 +133,7 @@ function App() {
             return (
               <Detail
                 products={products}
-                initalState={initalState}
+                initialState={initialState}
                 handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 {...routeProps}
@@ -139,7 +155,7 @@ function App() {
             return (
               <Cart
                 products={products}
-                initalState={initalState}
+                initialState={initialState}
                 handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 total={total}
@@ -154,7 +170,7 @@ function App() {
             return (
               <Order
                 products={products}
-                initalState={initalState}
+                initialState={initialState}
                 addUserData={addUserData}
                 total={total}
               />
@@ -168,11 +184,11 @@ function App() {
             return <OrderSuccess userData={userData} />;
           }}
         />
-                <Route
+        <Route
           exact
           path="/admin"
           render={() => {
-            return <Admin userData={userData} initialState={initalState} data={data} />;
+            return <Admin userOrderHistory={userOrderHistory} userData={userData} initialState={initialState} data={data} />;
           }}
         />
       </Switch>

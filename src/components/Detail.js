@@ -25,7 +25,7 @@ export default function Detail(props) {
           add to basket
         </button>
         {props.products[paramsId].nrOfItems ===
-        props.initalState[paramsId].nrOfItems ? (
+        props.initialState[paramsId].nrOfItems ? (
           <></>
         ) : (
           <button

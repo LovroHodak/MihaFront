@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Order({ products, initalState, addUserData, total }) {
+export default function Order({ products, initialState, addUserData, total }) {
   return (
     <div>
       <h2>Order</h2>
       <h3>Your Products: </h3>
       <div>
         {products.map((product) => {
-          if (product.nrOfItems === initalState[product.id].nrOfItems) {
+          if (product.nrOfItems === initialState[product.id].nrOfItems) {
             return <div key={product.id}></div>;
           } else {
             return (
@@ -15,12 +15,12 @@ export default function Order({ products, initalState, addUserData, total }) {
                 <p>Name: {product.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>{initalState[product.id].nrOfItems - product.nrOfItems}</b>
+                  <b>{initialState[product.id].nrOfItems - product.nrOfItems}</b>
                 </p>
                 <p>
                   Price:
                   <b>
-                    {(initalState[product.id].nrOfItems - product.nrOfItems) *
+                    {(initialState[product.id].nrOfItems - product.nrOfItems) *
                       product.price}
                   </b>
                   €
