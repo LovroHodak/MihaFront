@@ -35,3 +35,9 @@ you will see that Stock of all products has changed
 
 ORDERSUCCESS
 -default shows email of client who ordered
+
+ADMIN
+-default empty
+-once you press Send (in Order) list appears of UserDetail
+-it is an array and displayes in reverse()
+

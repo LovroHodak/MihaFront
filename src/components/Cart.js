@@ -25,11 +25,11 @@ export default function Cart({
                   <b>{initalState[product.id].nrOfItems - product.nrOfItems}</b>
                 </p>
                 <p>
-                  Price:{" "}
+                  Price:
                   <b>
                     {(initalState[product.id].nrOfItems - product.nrOfItems) *
                       product.price}
-                  </b>{" "}
+                  </b>
                   €
                 </p>
                 <button onClick={() => handleAddToCart(product.id)}>

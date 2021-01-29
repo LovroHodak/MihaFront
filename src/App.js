@@ -10,8 +10,10 @@ import Info from "./components/Info";
 import Order from "./components/Order";
 import OrderSuccess from "./components/OrderSuccess";
 import Detail from "./components/Detail";
+import Admin from "./components/Admin";
 //data
 import data from "./data";
+
 
 function App() {
   const [initalState, setInitalState] = useState(data);
@@ -63,11 +65,32 @@ function App() {
     history.push("/orderSuccess");
   };
 
-  const addData = (e) => {
+  const addUserData = (e) => {
     e.preventDefault();
-    setUserData([String(e.target.email.value), ...userData]);
+    let date = new Date();
+    let dd = String(date.getDate()).padStart(2, "0");
+    let mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = date.getFullYear();
+    date = dd + "/" + mm + "/" + yyyy;
+
+    
+
+    setUserData([{
+      date: date,
+      email: e.target.email.value,
+      name: e.target.name.value,
+      lastname: e.target.lastname.value,
+      street: e.target.street.value,
+      city: e.target.city.value,
+      itemName: '',
+      howManyItems: 0,
+      sameItemsPrice: 0,
+      totalItemsPrice: 0
+    }, ...userData])
     handleShip();
   };
+
+ 
 
   return (
     <div className="app">
@@ -132,7 +155,7 @@ function App() {
               <Order
                 products={products}
                 initalState={initalState}
-                addData={addData}
+                addUserData={addUserData}
                 total={total}
               />
             );
@@ -143,6 +166,13 @@ function App() {
           path="/orderSuccess"
           render={() => {
             return <OrderSuccess userData={userData} />;
+          }}
+        />
+                <Route
+          exact
+          path="/admin"
+          render={() => {
+            return <Admin userData={userData} initialState={initalState} data={data} />;
           }}
         />
       </Switch>
