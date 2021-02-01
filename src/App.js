@@ -14,18 +14,37 @@ import Admin from "./components/Admin";
 //data
 import data from "./data";
 
-
 function App() {
+  //items
   const [initialState, setInitialState] = useState(data);
   const [products, setProducts] = useState(initialState);
+  //orders
   const [userData, setUserData] = useState([]);
-  const [userOrderHistory, setUserOrderHistory] = useState([])
+  const [orderData, setOrderData] = useState([]);
+  //navbar
   const [basketItems, setBasketItems] = useState(0);
   const [total, setTotal] = useState(0);
 
   let history = useHistory();
 
- 
+  const handleOrder = () => {
+    const result = products
+      .filter((product) => {
+        return product.nrOfItems !== initialState[product.id].nrOfItems;
+      })
+      .map((item) => {
+        return {
+          name: item.name,
+          id: item.id,
+          nrOfItems: initialState[item.id].nrOfItems - item.nrOfItems,
+          price:
+            (initialState[item.id].nrOfItems - item.nrOfItems) * item.price,
+          oneItemPrice: item.price,
+        };
+      });
+
+    setOrderData(result);
+  };
 
   const handleAddToCart = (id) => {
     const newProducts = products.map((product) => {
@@ -42,11 +61,6 @@ function App() {
     setProducts(newProducts);
     setBasketItems(basketItems + 1);
     setTotal(total + products[id].price);
-    setUserOrderHistory([{
-      name: products[id].name,
-      price: products[id].price * ((initialState[id].nrOfItems - products[id].nrOfItems) + 1),
-      nrOfItems: (initialState[id].nrOfItems - products[id].nrOfItems) + 1
-    }, ...userOrderHistory])
   };
 
   const handleDeleteFromCart = (id) => {
@@ -64,11 +78,6 @@ function App() {
     setProducts(newProducts);
     setBasketItems(basketItems - 1);
     setTotal(total - products[id].price);
-    setUserOrderHistory([{
-      name: products[id].name,
-      price: products[id].price * ((initialState[id].nrOfItems - products[id].nrOfItems) -1),
-      nrOfItems: (initialState[id].nrOfItems - products[id].nrOfItems) - 1
-    }, ...userOrderHistory])
   };
 
   const handleShip = () => {
@@ -80,36 +89,30 @@ function App() {
 
   const addUserData = (e) => {
     e.preventDefault();
+
     let date = new Date();
     let dd = String(date.getDate()).padStart(2, "0");
     let mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
     let yyyy = date.getFullYear();
     date = dd + "/" + mm + "/" + yyyy;
 
-    setUserData([{
+    let userInfo = {
       date: date,
       email: e.target.email.value,
       name: e.target.name.value,
       lastname: e.target.lastname.value,
       street: e.target.street.value,
       city: e.target.city.value,
-    }, ...userData])
+      orderDetails: orderData,
+      total: total,
+    };
+
+    setUserData([userInfo, ...userData]);
     handleShip();
   };
 
- 
-
   return (
     <div className="app">
-    <div>
-    {userOrderHistory.map((user) => {
-      return (<div><p>{user.name}</p><p>{user.price}</p><p>{user.nrOfItems}</p></div>)
-    })}
-    </div>
-
-    {/* <p>{userOrderHistory.name}</p>
-    <p>{userOrderHistory.price}</p>
-    <p>{userOrderHistory.nrOfItems}</p> */}
       <Navbar basketItems={basketItems} total={total} />
       <Switch>
         <Route
@@ -159,6 +162,7 @@ function App() {
                 handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 total={total}
+                handleOrder={handleOrder}
               />
             );
           }}
@@ -188,7 +192,7 @@ function App() {
           exact
           path="/admin"
           render={() => {
-            return <Admin userOrderHistory={userOrderHistory} userData={userData} initialState={initialState} data={data} />;
+            return <Admin userData={userData} />;
           }}
         />
       </Switch>

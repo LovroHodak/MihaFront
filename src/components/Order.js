@@ -15,7 +15,9 @@ export default function Order({ products, initialState, addUserData, total }) {
                 <p>Name: {product.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>{initialState[product.id].nrOfItems - product.nrOfItems}</b>
+                  <b>
+                    {initialState[product.id].nrOfItems - product.nrOfItems}
+                  </b>
                 </p>
                 <p>
                   Price:
@@ -37,6 +39,7 @@ export default function Order({ products, initialState, addUserData, total }) {
           <label>Email: </label>
           <input name="email" type="text" />
         </div>
+
         <div>
           <label>Name: </label>
           <input name="name" type="text" />
@@ -58,5 +61,3 @@ export default function Order({ products, initialState, addUserData, total }) {
     </div>
   );
 }
-
-

@@ -8,6 +8,7 @@ export default function Cart({
   handleAddToCart,
   handleDeleteFromCart,
   total,
+  handleOrder,
 }) {
   return (
     <div>
@@ -22,7 +23,9 @@ export default function Cart({
                 <p>Name: {product.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>{initialState[product.id].nrOfItems - product.nrOfItems}</b>
+                  <b>
+                    {initialState[product.id].nrOfItems - product.nrOfItems}
+                  </b>
                 </p>
                 <p>
                   Price:
@@ -49,7 +52,9 @@ export default function Cart({
         <div>
           <h1>Total: {total}€</h1>
           <Link to="/order">
-            <button className="orderButton">Order</button>
+            <button onClick={handleOrder} className="orderButton">
+              Order
+            </button>
           </Link>
         </div>
       )}
