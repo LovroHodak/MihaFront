@@ -3,3 +3,69 @@
     font-size: 20px;
     background-color: green;
 }
+
+.cartItems{
+    display: flex;
+    flex-direction: column;
+}
+
+.cartItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid black;
+}
+
+.cartImg {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.cartAmount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartNrOfItems {
+    font-size: 20px;
+}
+
+.cartBtn {
+    width: 50px;
+    background-color: black;
+    color: cornsilk;
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+.cartItemName{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.cartItemInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartItemPrice {
+    font-size: 20px;
+}
+
+.cartOrder{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cartOrderButton{
+    font-size: 40px;
+    height: 50px;
+    cursor: pointer;
+    background-color: brown;
+    border-radius: 5px;
+    color: floralwhite;
+}

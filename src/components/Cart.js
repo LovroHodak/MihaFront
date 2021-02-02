@@ -11,46 +11,69 @@ export default function Cart({
   handleOrder,
 }) {
   return (
-    <div>
-      <h1>Cart</h1>
-      <div>
+    <div className="cart">
+      <div className="cartItems">
         {products
           .filter((product) => {
             return product.nrOfItems !== initialState[product.id].nrOfItems;
           })
           .map((item) => {
             return (
-              <div key={item.id}>
-                <p>Name: {item.name}</p>
-                <p>
-                  Nr. of Items:
-                  <b>{initialState[item.id].nrOfItems - item.nrOfItems}</b>
-                </p>
-                <p>
-                  Price:
-                  <b>
-                    {(initialState[item.id].nrOfItems - item.nrOfItems) *
-                      item.price}
-                  </b>
-                  €
-                </p>
-                <button onClick={() => handleAddToCart(item.id)}>
-                  Add To basket
-                </button>
-                <button onClick={() => handleDeleteFromCart(item.id)}>
-                  Delete from basket
-                </button>
+              <div key={item.id} className="cartItem">
+                <img src={item.image} alt={item.name} className="cartImg" />
+
+                <div  className="cartItemInfo">
+                  <Link to={`/detail/${item.id}`} className="cartItemName">
+                    <h2>{item.name}</h2>
+                  </Link>
+
+                  <p className="cartItemPrice">
+                    Price:{" "}
+                    <b>
+                      {(initialState[item.id].nrOfItems - item.nrOfItems) *
+                        item.price}
+                    </b>
+                    €
+                  </p>
+                </div>
+
+                <div className="cartAmount">
+                  <p className="cartNrOfItems">
+                    Nr. of Items:{" "}
+                    <b>{initialState[item.id].nrOfItems - item.nrOfItems}</b>
+                  </p>
+                  <div>
+                    {item.nrOfItems > 0 ? (
+                      <button
+                        className="cartBtn"
+                        onClick={() => handleAddToCart(item.id)}
+                      >
+                        +
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+
+                    <button
+                      className="cartBtn"
+                      onClick={() => handleDeleteFromCart(item.id)}
+                    >
+                      -
+                    </button>
+                  </div>
+                </div>
               </div>
             );
           })}
       </div>
+
       {products === initialState ? (
         <></>
       ) : (
-        <div>
+        <div className='cartOrder'>
           <h1>Total: {total}€</h1>
           <Link to="/order">
-            <button onClick={handleOrder} className="orderButton">
+            <button onClick={handleOrder} className='cartOrderButton'>
               Order
             </button>
           </Link>

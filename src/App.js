@@ -13,6 +13,7 @@ import Detail from "./components/Detail";
 import Admin from "./components/Admin";
 //data
 import data from "./data";
+import Footer from "./components/Footer";
 
 function App() {
   //items
@@ -113,7 +114,10 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar basketItems={basketItems} total={total} />
+      <Navbar
+        basketItems={basketItems}
+      />
+
       <Switch>
         <Route
           exact
@@ -196,6 +200,7 @@ function App() {
           }}
         />
       </Switch>
+      <Footer />
     </div>
   );
 }

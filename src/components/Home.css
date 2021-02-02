@@ -1,10 +1,50 @@
 .home {
     border: 2px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .homeProduct {
-    margin: 0 10px;
     border: 1px solid green;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin: 5px 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeImg {
+    width: 100%;
+}
+
+.homeTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeName {
+    margin: 5px auto;
+    font-size: 25px;
+}
+
+.homePrice {
+    margin: 5px auto;
+}
+
+.homeLink {
+    width: 90%;
+    height: 30px;
+    margin: 5px 5px;
+}
+
+.homeButton {
+    text-decoration: none;
+    font-size: 15px;
+    color: cornsilk;
+    width: 100%;
+    height: 30px;
+    background-color: rgb(51, 80, 134);
+    cursor: pointer;
 }

@@ -10,36 +10,29 @@ export default function Home({
 }) {
   return (
     <div className="home">
-      <h1>Home</h1>
-      <div>
-        {products.map((product) => {
-          return (
-            <div key={product.id} className="homeProduct">
-              <Link to={`/detail/${product.id}`}>
-                <p>
-                  Name: <b>{product.name}</b>
-                </p>
-              </Link>
-              <p>
-                Stock: <b>{product.nrOfItems}</b>
-              </p>
-              <p>
-                Price: <b>{product.price} €</b>
-              </p>
-              <button onClick={() => handleAddToCart(product.id)}>
-                add to basket
-              </button>
-              {product.nrOfItems === initialState[product.id].nrOfItems ? (
-                <></>
-              ) : (
-                <button onClick={() => handleDeleteFromCart(product.id)}>
-                  delete from basket
-                </button>
-              )}
+      {products.map((product) => {
+        return (
+          <div key={product.id} className="homeProduct">
+            <div>
+              <img src={product.image} alt={product.name} className="homeImg" />
             </div>
-          );
-        })}
-      </div>
+
+            <div className="homeTitle">
+              <b className="homeName">{product.name}</b>
+              <b className="homePrice">{product.price} €</b>
+            </div>
+
+            
+              {/* <button className='homeBtn'>
+                <Link to={`/detail/${product.id}`} className='homeLink'>View</Link>
+              </button> */}
+            
+              <Link to={`/detail/${product.id}`} className='homeLink'>
+                <button className='homeButton'>View</button>
+              </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

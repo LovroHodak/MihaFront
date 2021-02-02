@@ -1,39 +1,51 @@
 import React from "react";
+import "./Detail.css";
 
 export default function Detail(props) {
   let paramsId = props.match.params.id;
 
   return (
-    <div>
-      <h1>In DETAIL</h1>
+    <div className="detail">
+      <img
+        src={props.products[paramsId].image}
+        alt={props.products[paramsId].name}
+        className="detailImg"
+      />
       <div>
+        <h1>{props.products[paramsId].name}</h1>
+
+        <p>{props.products[paramsId].description}</p>
         <p>
-          Name: <b>{props.products[paramsId].name}</b>
-        </p>
-        <p>
-          Description: <b>{props.products[paramsId].description}</b>
+          Category: <b>{props.products[paramsId].category}</b>
         </p>
         <p>
           Price: <b>{props.products[paramsId].price}</b> €
         </p>
         <p>
-          Stock: <b>{props.products[paramsId].nrOfItems}</b>
+          In Stock: <b>{props.products[paramsId].nrOfItems}</b>
         </p>
-        <button
-          onClick={() => props.handleAddToCart(props.products[paramsId].id)}
-        >
-          add to basket
-        </button>
+        {props.products[paramsId].nrOfItems > 0 ? (
+          <button
+            className="detailBtn"
+            onClick={() => props.handleAddToCart(props.products[paramsId].id)}
+          >
+            Add 
+          </button>
+        ) : (
+          <></>
+        )}
+
         {props.products[paramsId].nrOfItems ===
         props.initialState[paramsId].nrOfItems ? (
           <></>
         ) : (
           <button
+            className="detailBtn"
             onClick={() =>
               props.handleDeleteFromCart(props.products[paramsId].id)
             }
           >
-            delete from basket
+            Remove 
           </button>
         )}
       </div>

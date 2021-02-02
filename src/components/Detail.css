@@ -1,0 +1,18 @@
+.detail{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.detailImg{
+    width: 100%;
+}
+
+.detailBtn {
+    width: 25%;
+    height: 10%;
+    background-color: black;
+    color: cornsilk;
+    font-size: 15px;
+    margin-right: 5px;
+}

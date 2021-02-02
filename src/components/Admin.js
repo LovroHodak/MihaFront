@@ -1,10 +1,12 @@
 import React from "react";
 import "./Admin.css";
+import { Link } from "react-router-dom";
 
 export default function Admin({ userData }) {
   return (
     <div>
       <h1>Admin</h1>
+      {/* <Link to='/adminAddProducts'><button>Add New Products</button></Link> */}
       <h3>Order History</h3>
       <div>
         <div>

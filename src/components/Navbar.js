@@ -2,15 +2,12 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ basketItems, total }) {
+export default function Navbar({ basketItems }) {
   return (
-    <div className="navbar">
-      <Link to="/info">Info</Link>
-      <Link to="/admin">Admin</Link>
-      <Link to="/">Home</Link>
-      <Link to="/cart">
-        Cart ({basketItems}). Total: {total} €
-      </Link>
-    </div>
+    <nav className="navbar">
+      <Link to="/info" className='navInfo'>Info</Link>
+      <Link to="/" className='navLogo'>Miha Shop</Link>
+      <Link to="/cart" className='navCart'>Cart ({basketItems})</Link>
+    </nav>
   );
 }
