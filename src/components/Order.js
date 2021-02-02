@@ -6,31 +6,29 @@ export default function Order({ products, initialState, addUserData, total }) {
       <h2>Order</h2>
       <h3>Your Products: </h3>
       <div>
-        {products.map((product) => {
-          if (product.nrOfItems === initialState[product.id].nrOfItems) {
-            return <div key={product.id}></div>;
-          } else {
+        {products
+          .filter((product) => {
+            return product.nrOfItems !== initialState[product.id].nrOfItems;
+          })
+          .map((item) => {
             return (
-              <div key={product.id}>
-                <p>Name: {product.name}</p>
+              <div key={item.id}>
+                <p>Name: {item.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>
-                    {initialState[product.id].nrOfItems - product.nrOfItems}
-                  </b>
+                  <b>{initialState[item.id].nrOfItems - item.nrOfItems}</b>
                 </p>
                 <p>
                   Price:
                   <b>
-                    {(initialState[product.id].nrOfItems - product.nrOfItems) *
-                      product.price}
+                    {(initialState[item.id].nrOfItems - item.nrOfItems) *
+                      item.price}
                   </b>
                   €
                 </p>
               </div>
             );
-          }
-        })}
+          })}
       </div>
       <h1>Total: {total}€</h1>
       <h3>Your Info: </h3>

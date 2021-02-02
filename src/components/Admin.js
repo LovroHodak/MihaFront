@@ -6,7 +6,7 @@ export default function Admin({ userData }) {
     <div>
       <h1>Admin</h1>
       <h3>Order History</h3>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div>
         <div>
           {userData.reverse().map((user, i) => {
             return (

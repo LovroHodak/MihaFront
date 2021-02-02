@@ -14,37 +14,35 @@ export default function Cart({
     <div>
       <h1>Cart</h1>
       <div>
-        {products.map((product) => {
-          if (product.nrOfItems === initialState[product.id].nrOfItems) {
-            return <div key={product.id}></div>;
-          } else {
+        {products
+          .filter((product) => {
+            return product.nrOfItems !== initialState[product.id].nrOfItems;
+          })
+          .map((item) => {
             return (
-              <div key={product.id}>
-                <p>Name: {product.name}</p>
+              <div key={item.id}>
+                <p>Name: {item.name}</p>
                 <p>
                   Nr. of Items:
-                  <b>
-                    {initialState[product.id].nrOfItems - product.nrOfItems}
-                  </b>
+                  <b>{initialState[item.id].nrOfItems - item.nrOfItems}</b>
                 </p>
                 <p>
                   Price:
                   <b>
-                    {(initialState[product.id].nrOfItems - product.nrOfItems) *
-                      product.price}
+                    {(initialState[item.id].nrOfItems - item.nrOfItems) *
+                      item.price}
                   </b>
                   €
                 </p>
-                <button onClick={() => handleAddToCart(product.id)}>
+                <button onClick={() => handleAddToCart(item.id)}>
                   Add To basket
                 </button>
-                <button onClick={() => handleDeleteFromCart(product.id)}>
+                <button onClick={() => handleDeleteFromCart(item.id)}>
                   Delete from basket
                 </button>
               </div>
             );
-          }
-        })}
+          })}
       </div>
       {products === initialState ? (
         <></>
