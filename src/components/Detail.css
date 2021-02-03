@@ -46,6 +46,9 @@
   }
 }
 
-@media (min-width: 1040px) {
-
+@media (min-width: 1200px) {
+  .detail{
+    width: 70%;
+    margin: 0 auto;
+  }
 }

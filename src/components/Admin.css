@@ -15,3 +15,12 @@
 .adminOrderNr{
     color: rgb(76, 50, 124);
 }
+
+
+
+@media (min-width: 1400px){
+    .adminData{
+        width: 70%;
+        margin: 0 auto;
+    }
+}

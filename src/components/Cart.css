@@ -115,5 +115,15 @@
 }
 
 @media (min-width: 1040px) {
+    .cart{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
 
+@media (min-width: 1400px){
+    .cart{
+        width: 50%;
+        margin: 0 auto;
+    }
 }
