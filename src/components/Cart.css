@@ -13,6 +13,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     border: 1px solid black;
+    margin: 3px auto;
+    border-radius: 2px;
 }
 
 .cartImg {
@@ -37,6 +39,7 @@
     color: cornsilk;
     font-size: 30px;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .cartItemName{
@@ -68,4 +71,13 @@
     background-color: brown;
     border-radius: 5px;
     color: floralwhite;
+}
+
+.cartTotal {
+    color: brown;
+    
+}
+
+.cartTotalTitle {
+    font-size: 40px;
 }

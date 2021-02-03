@@ -115,9 +115,10 @@ function App() {
   return (
     <div className="app">
       <Navbar
+      className='navbarApp'
         basketItems={basketItems}
       />
-
+      <main className='mainApp'>
       <Switch>
         <Route
           exact
@@ -200,7 +201,8 @@ function App() {
           }}
         />
       </Switch>
-      <Footer />
+      </main>
+      <Footer className='footerApp' />
     </div>
   );
 }

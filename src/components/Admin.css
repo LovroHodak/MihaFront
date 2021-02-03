@@ -1,3 +1,17 @@
-.userHistoryData{
+.adminData {
+    display: flex;
     border: 1px solid black;
+    justify-content: space-evenly;
+}
+
+.adminOrderItem{
+    margin: 5px 5px;
+}
+
+.adminTotal, .adminOrderItemPrice {
+    color: red
+}
+
+.adminOrderNr{
+    color: rgb(76, 50, 124);
 }

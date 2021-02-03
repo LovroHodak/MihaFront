@@ -2,10 +2,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
+    
 }
 
 .detailImg{
     width: 100%;
+    height: 77vh;
 }
 
 .detailBtn {
@@ -15,4 +17,5 @@
     color: cornsilk;
     font-size: 15px;
     margin-right: 5px;
+    cursor: pointer;
 }

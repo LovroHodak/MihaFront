@@ -10,7 +10,9 @@ export default function Cart({
   total,
   handleOrder,
 }) {
+  
   return (
+    
     <div className="cart">
       <div className="cartItems">
         {products
@@ -71,7 +73,7 @@ export default function Cart({
         <></>
       ) : (
         <div className='cartOrder'>
-          <h1>Total: {total}€</h1>
+          <h1 className='cartTotalTitle'>Total: <b className='cartTotal'>{total}</b> €</h1>
           <Link to="/order">
             <button onClick={handleOrder} className='cartOrderButton'>
               Order

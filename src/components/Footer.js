@@ -5,7 +5,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <div className='footer'>
-      <Link to="/admin" ><p className='footerAdmin'>Admin</p></Link>
+      <Link to="/admin" className='footerAdmin'><p >Admin</p></Link>
     </div>
   );
 }
