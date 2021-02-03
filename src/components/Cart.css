@@ -82,7 +82,7 @@
   font-size: 40px;
 }
 
-@media (max-width: 371px) {
+@media (max-width: 560px) {
   .cartItemInfo {
     display: flex;
     flex-direction: column;
@@ -94,7 +94,8 @@
     width: 50%;
     margin: 0 auto;
   }
-  .cartItemTitle, .cartNrOfItems {
+  .cartItemTitle,
+  .cartNrOfItems {
     font-size: 15px;
   }
   .cartItemInfo {
@@ -108,7 +109,11 @@
     margin: 0 auto;
   }
 
-  .cartNrOfItems{
-      margin: 0;
+  .cartNrOfItems {
+    margin: 0;
   }
+}
+
+@media (min-width: 1040px) {
+
 }

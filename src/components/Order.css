@@ -39,10 +39,14 @@
   color: darkblue;
 }
 
-@media (max-width: 371px) {
+@media (max-width: 560px) {
   .orderItem {
     display: grid;
     grid-template-columns: 1fr;
     align-items: baseline;
   }
+}
+
+@media (min-width: 1040px) {
+
 }

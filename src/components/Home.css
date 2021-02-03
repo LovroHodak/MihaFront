@@ -51,7 +51,9 @@
 }
 
 
-@media (max-width: 371px) {
+
+
+@media (max-width: 560px) {
     .home {
         border: 2px solid red;
         display: grid;
@@ -61,4 +63,8 @@
         margin: 5px auto;
         font-size: 15px;
     }
+}
+
+@media (min-width: 1040px){
+    
 }
