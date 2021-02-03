@@ -20,9 +20,8 @@ export default function Cart({
           .map((item) => {
             return (
               <div key={item.id} className="cartItem">
-                
-                  <img src={item.image} alt={item.name} className="cartImg" />
-                
+                <img src={item.image} alt={item.name} className="cartImg" />
+
                 <div className="cartItemInfo">
                   <Link to={`/detail/${item.id}`} className="cartItemName">
                     <p className="cartItemTitle">{item.name}</p>

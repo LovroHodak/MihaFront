@@ -12,8 +12,9 @@ export default function Detail(props) {
         className="detailImg"
       />
       <div>
-      <div className='detailName'><h1>{props.products[paramsId].name}</h1></div>
-        
+        <div className="detailName">
+          <h1>{props.products[paramsId].name}</h1>
+        </div>
 
         <p>{props.products[paramsId].description}</p>
         <p>
@@ -30,7 +31,7 @@ export default function Detail(props) {
             className="detailBtn"
             onClick={() => props.handleAddToCart(props.products[paramsId].id)}
           >
-            Add 
+            Add
           </button>
         ) : (
           <></>
@@ -46,7 +47,7 @@ export default function Detail(props) {
               props.handleDeleteFromCart(props.products[paramsId].id)
             }
           >
-            Remove 
+            Remove
           </button>
         )}
       </div>

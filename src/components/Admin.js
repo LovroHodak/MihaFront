@@ -7,9 +7,11 @@ export default function Admin({ userData }) {
       {/* <h3>Order History</h3> */}
       {userData.reverse().map((user, i) => {
         return (
-          <div key={i} className='adminData'>
+          <div key={i} className="adminData">
             <div>
-            <h2 className='adminOrderNr'>Order Number ({userData.length - i})</h2>
+              <h2 className="adminOrderNr">
+                Order Number ({userData.length - i})
+              </h2>
               <p>Date: {user.date}</p>
               <p>
                 Email: <b>{user.email}</b>
@@ -26,12 +28,12 @@ export default function Admin({ userData }) {
               <p>
                 City: <b>{user.city}</b>
               </p>
-              <h1 className='adminTotal'>Total: {user.total} €</h1> 
+              <h1 className="adminTotal">Total: {user.total} €</h1>
             </div>
             <div>
               {user.orderDetails.map((item, i) => {
                 return (
-                  <div key={item.id} className='adminOrderItem'>
+                  <div key={item.id} className="adminOrderItem">
                     <p>
                       {i + 1}) <b>{item.name}</b>
                     </p>
@@ -39,7 +41,7 @@ export default function Admin({ userData }) {
                     <p>
                       Number of items: <b>{item.nrOfItems}</b>
                     </p>
-                    <p className='adminOrderItemPrice'>
+                    <p className="adminOrderItemPrice">
                       Price: <b>{item.price}</b> €
                     </p>
                   </div>

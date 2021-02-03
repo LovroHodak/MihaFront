@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Switch, Route, withRouter, useHistory } from "react-router-dom";
 //style
-import "./App.css";
+import './App.css'
 //components
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
@@ -115,10 +115,9 @@ function App() {
   return (
     <div className="app">
       <Navbar
-      className='navbarApp'
         basketItems={basketItems}
       />
-      <main className='mainApp'>
+     
       <Switch>
         <Route
           exact
@@ -127,9 +126,6 @@ function App() {
             return (
               <Home
                 products={products}
-                initialState={initialState}
-                handleAddToCart={handleAddToCart}
-                handleDeleteFromCart={handleDeleteFromCart}
               />
             );
           }}
@@ -201,8 +197,8 @@ function App() {
           }}
         />
       </Switch>
-      </main>
-      <Footer className='footerApp' />
+      
+      <Footer />
     </div>
   );
 }
