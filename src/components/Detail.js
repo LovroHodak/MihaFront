@@ -12,7 +12,8 @@ export default function Detail(props) {
         className="detailImg"
       />
       <div>
-        <h1>{props.products[paramsId].name}</h1>
+      <div className='detailName'><h1>{props.products[paramsId].name}</h1></div>
+        
 
         <p>{props.products[paramsId].description}</p>
         <p>

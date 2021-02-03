@@ -1,39 +1,48 @@
 .order {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
 }
 
-.orderSectionName, .orderCountI {
-    color: rgb(240, 91, 23);
+.orderSectionName,
+.orderCountI {
+  color: rgb(240, 91, 23);
 }
 
 .orderItem {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: baseline;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: baseline;
 }
 
 .orderUserInfo {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .orderUserInfoLabel {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .orderUserInfoInput {
-    font-size: 20px;
-    width: 70%;
-    margin: 5px;
+  font-size: 20px;
+  width: 70%;
+  margin: 5px;
 }
 
 .orderShipButton {
-    font-size: 30px;
-    margin-top: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: chocolate;
-    color: darkblue;
+  font-size: 30px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: chocolate;
+  color: darkblue;
+}
+
+@media (max-width: 371px) {
+  .orderItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: baseline;
+  }
 }

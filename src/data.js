@@ -37,7 +37,7 @@ const products = [
     },
     {
         id: 4,
-        name: 'Golden Gate Grinders', 
+        name: 'Golden Gate', 
         price: 20, 
         image: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1590587918-golden-gate-1590587910.jpg?crop=1xw:1xh;center,top&resize=768:*',
         nrOfItems: 50,

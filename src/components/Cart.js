@@ -10,9 +10,7 @@ export default function Cart({
   total,
   handleOrder,
 }) {
-  
   return (
-    
     <div className="cart">
       <div className="cartItems">
         {products
@@ -22,11 +20,12 @@ export default function Cart({
           .map((item) => {
             return (
               <div key={item.id} className="cartItem">
-                <img src={item.image} alt={item.name} className="cartImg" />
-
-                <div  className="cartItemInfo">
+                
+                  <img src={item.image} alt={item.name} className="cartImg" />
+                
+                <div className="cartItemInfo">
                   <Link to={`/detail/${item.id}`} className="cartItemName">
-                    <h2>{item.name}</h2>
+                    <p className="cartItemTitle">{item.name}</p>
                   </Link>
 
                   <p className="cartItemPrice">
@@ -72,10 +71,12 @@ export default function Cart({
       {products === initialState ? (
         <></>
       ) : (
-        <div className='cartOrder'>
-          <h1 className='cartTotalTitle'>Total: <b className='cartTotal'>{total}</b> €</h1>
+        <div className="cartOrder">
+          <h1 className="cartTotalTitle">
+            Total: <b className="cartTotal">{total}</b> €
+          </h1>
           <Link to="/order">
-            <button onClick={handleOrder} className='cartOrderButton'>
+            <button onClick={handleOrder} className="cartOrderButton">
               Order
             </button>
           </Link>

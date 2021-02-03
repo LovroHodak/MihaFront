@@ -49,3 +49,16 @@
     background-color: rgb(51, 80, 134);
     cursor: pointer;
 }
+
+
+@media (max-width: 371px) {
+    .home {
+        border: 2px solid red;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .homeName {
+        margin: 5px auto;
+        font-size: 15px;
+    }
+}
