@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, withRouter, useHistory } from "react-router-dom";
+import axios from 'axios'
 //style
 import './App.css'
 //components
@@ -10,21 +11,29 @@ import Info from "./components/Info";
 import Order from "./components/Order";
 import OrderSuccess from "./components/OrderSuccess";
 import Detail from "./components/Detail";
+import Detail2 from "./components/Detail2";
 import Admin from "./components/Admin";
-//data
-import data from "./data";
 import Footer from "./components/Footer";
 
 function App() {
   //items
-  const [initialState, setInitialState] = useState(data);
-  const [products, setProducts] = useState(initialState);
+  const [initialState, setInitialState] = useState([]);
+  const [products, setProducts] = useState([]);
   //orders
   const [userData, setUserData] = useState([]);
   const [orderData, setOrderData] = useState([]);
   //navbar
   const [basketItems, setBasketItems] = useState(0);
   const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/products", { withCredentials: true })
+      .then((response) => {
+        setInitialState(response.data);
+        setProducts(response.data)
+      });
+  }, []);
 
   let history = useHistory();
 
@@ -135,10 +144,9 @@ function App() {
           path="/detail/:id"
           render={(routeProps) => {
             return (
-              <Detail
-                products={products}
-                initialState={initialState}
-                handleAddToCart={handleAddToCart}
+              <Detail2
+              initialState={initialState}
+              handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 {...routeProps}
               />

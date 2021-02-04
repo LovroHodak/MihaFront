@@ -17,7 +17,7 @@ export default function Home({ products }) {
               <b className="homePrice">{product.price} €</b>
             </div>
 
-            <Link to={`/detail/${product.id}`} className="homeLink">
+            <Link to={`/detail/${product._id}`} className="homeLink">
               <button className="homeButton">View</button>
             </Link>
           </div>
