@@ -145,6 +145,7 @@ function App() {
           render={(routeProps) => {
             return (
               <Detail2
+              products={products}
               initialState={initialState}
               handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}

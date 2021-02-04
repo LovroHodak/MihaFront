@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Detail.css";
 import axios from "axios";
 
-export default function Detail(props) {
+export default function Detail2(props) {
   const [product, setProduct] = useState({});
 
+  //this is the same ID as req.params in SERVER
   let paramsId = props.match.params.id;
 
   useEffect(() => {
@@ -15,7 +16,17 @@ export default function Detail(props) {
       .then((response) => {
         setProduct(response.data);
       });
-  }, []);
+  }, [product.nrOfItems]);
+
+  const addToCart = () => {
+    props.handleAddToCart(product.id);
+    setProduct({ ...product, nrOfItems: product.nrOfItems - 1 });
+  };
+
+  const deleteFromCart = () => {
+    props.handleDeleteFromCart(product.id);
+    setProduct({ ...product, nrOfItems: product.nrOfItems + 1 });
+  };
 
   return (
     <div className="detail">
@@ -33,35 +44,39 @@ export default function Detail(props) {
           Price: <b>{product.price}</b> €
         </p>
         <p>
-          In Stock: <b>{product.nrOfItems}</b>
+          In Stock:{" "}
+          {props.products
+            .filter((product) => {
+              return product._id === paramsId;
+            })
+            .map((item, i) => {
+              return <b key={i}>{item.nrOfItems}</b>;
+            })}
         </p>
-        {product.nrOfItems > 0 ? (
-            <button onClick={() => props.handleAddToCart(product.id)} className="detailBtn">Add</button>
-        ) : (<></>)}
-       {/*  {product.nrOfItems > 0 ? (
-          <button
-            className="detailBtn"
-            onClick={() => props.handleAddToCart(product._id)}
-          >
-            Add
-          </button>
-        ) : (
-          <></>
-        )}
 
-        {product.nrOfItems ===
-        props.initialState[paramsId].nrOfItems ? (
-          <></>
-        ) : (
-          <button
-            className="detailBtn"
-            onClick={() =>
-              props.handleDeleteFromCart(product._id)
-            }
-          >
-            Remove
-          </button>
-        )} */}
+        {props.products.map((product, i) => {
+          if (product._id === paramsId && product.nrOfItems > 0) {
+            return (
+              <button key={i} onClick={addToCart} className="detailBtn">
+                Add
+              </button>
+            );
+          }
+        })}
+
+        {props.products.map((item, i) => {
+          if (
+            item._id === paramsId &&
+            item.nrOfItems < product.nrOfItems &&
+            -1 < item.nrOfItems
+          ) {
+            return (
+              <button key={i} onClick={deleteFromCart} className="detailBtn">
+                Delete
+              </button>
+            );
+          }
+        })}
       </div>
     </div>
   );

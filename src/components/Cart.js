@@ -23,7 +23,7 @@ export default function Cart({
                 <img src={item.image} alt={item.name} className="cartImg" />
 
                 <div className="cartItemInfo">
-                  <Link to={`/detail/${item.id}`} className="cartItemName">
+                  <Link to={`/detail/${item._id}`} className="cartItemName">
                     <p className="cartItemTitle">{item.name}</p>
                   </Link>
 
