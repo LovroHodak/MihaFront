@@ -9,7 +9,29 @@ export default function Cart({
   handleDeleteFromCart,
   total,
   handleOrder,
-}) {
+  handleEditAdd,
+  handleEditDelete
+})
+
+{
+
+
+  const updateDB = () => {
+    console.log('im updating')
+    handleOrder()
+    /* handleEditAll(products) */
+  }
+
+  const addAndUpdate = (product) => {
+    handleAddToCart(product.id)
+    handleEditAdd(product)
+  }
+
+  const deleteAndUpdate = (product) => {
+    handleDeleteFromCart(product.id)
+    handleEditDelete(product)
+  }
+
   return (
     <div className="cart">
       <div className="cartItems">
@@ -46,7 +68,7 @@ export default function Cart({
                     {item.nrOfItems > 0 ? (
                       <button
                         className="cartBtn"
-                        onClick={() => handleAddToCart(item.id)}
+                        onClick={() => addAndUpdate(item)}
                       >
                         +
                       </button>
@@ -56,7 +78,7 @@ export default function Cart({
 
                     <button
                       className="cartBtn"
-                      onClick={() => handleDeleteFromCart(item.id)}
+                      onClick={() => deleteAndUpdate(item)}
                     >
                       -
                     </button>
@@ -75,7 +97,7 @@ export default function Cart({
             Total: <b className="cartTotal">{total}</b> €
           </h1>
           <Link to="/order">
-            <button onClick={handleOrder} className="cartOrderButton">
+            <button onClick={updateDB} className="cartOrderButton">
               Order
             </button>
           </Link>

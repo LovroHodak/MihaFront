@@ -21,11 +21,20 @@ export default function Detail2(props) {
   const addToCart = () => {
     props.handleAddToCart(product.id);
     setProduct({ ...product, nrOfItems: product.nrOfItems - 1 });
+    props.handleEditAdd(product)
+    console.log('product.nrOfItems', product.nrOfItems)
+    console.log('products', props.products[product.id].nrOfItems)
+    console.log('initial', props.initialState[product.id].nrOfItems)
   };
 
   const deleteFromCart = () => {
     props.handleDeleteFromCart(product.id);
     setProduct({ ...product, nrOfItems: product.nrOfItems + 1 });
+    props.handleEditDelete(product)
+    console.log('product.nrOfItems', product.nrOfItems)
+    console.log('products', props.products[product.id].nrOfItems)
+    console.log('initial', props.initialState[product.id].nrOfItems)
+  
   };
 
   return (
@@ -64,11 +73,10 @@ export default function Detail2(props) {
           }
         })}
 
-        {props.products.map((item, i) => {
+        {props.initialState.map((item, i) => {
           if (
             item._id === paramsId &&
-            item.nrOfItems < product.nrOfItems &&
-            -1 < item.nrOfItems
+             product.nrOfItems  < item.nrOfItems
           ) {
             return (
               <button key={i} onClick={deleteFromCart} className="detailBtn">

@@ -37,6 +37,40 @@ function App() {
 
   let history = useHistory();
 
+  const handleEditAdd = (item) => {
+    axios.patch(`http://localhost:5000/api/products/${item._id}`, {
+      nrOfItems: item.nrOfItems - 1
+    })
+    .then(() => {
+/*       let updatedItems = products.map((myItem) => {
+        if (myItem._id === item._id) {
+          myItem = item
+        }
+        return myItem
+      })
+      setProducts(updatedItems) */
+      console.log('updatedItems'/* , updatedItems */)
+    })
+  }
+
+  const handleEditDelete = (item) => {
+    axios.patch(`http://localhost:5000/api/products/${item._id}`, {
+      nrOfItems: item.nrOfItems + 1
+    })
+    .then(() => {
+      console.log('DeleteupdatedItems')
+    })
+  }
+
+ /*  const handleEditAll = (products) => {
+    console.log('handleEditAll')
+    axios.patch(`http://localhost:5000/api/products`, { withCredentials: true, products })
+      .then((response) => {
+        console.log('response.data is', response.data)
+        console.log('products are', products)
+      })
+  } */
+
   const handleOrder = () => {
     const result = products
       .filter((product) => {
@@ -145,6 +179,8 @@ function App() {
           render={(routeProps) => {
             return (
               <Detail2
+              handleEditDelete={handleEditDelete}
+              handleEditAdd={handleEditAdd}
               products={products}
               initialState={initialState}
               handleAddToCart={handleAddToCart}
@@ -167,6 +203,8 @@ function App() {
           render={() => {
             return (
               <Cart
+              handleEditDelete={handleEditDelete}
+              handleEditAdd={handleEditAdd}
                 products={products}
                 initialState={initialState}
                 handleAddToCart={handleAddToCart}
