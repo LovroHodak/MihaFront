@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, withRouter, useHistory } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 //style
-import './App.css'
+import "./App.css";
 //components
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
@@ -26,50 +26,42 @@ function App() {
   const [basketItems, setBasketItems] = useState(0);
   const [total, setTotal] = useState(0);
 
-    useEffect(() => {
+  useEffect(() => {
     axios
       .get("http://localhost:5000/api/products", { withCredentials: true })
       .then((response) => {
         setInitialState(response.data);
-        setProducts(response.data)
+        setProducts(response.data);
+      });
+
+    axios
+      .get("http://localhost:5000/api/orders", { withCredentials: true })
+      .then((response) => {
+        setUserData(response.data);
       });
   }, []);
 
   let history = useHistory();
 
   const handleEditAdd = (item) => {
-    axios.patch(`http://localhost:5000/api/products/${item._id}`, {
-      nrOfItems: item.nrOfItems - 1
-    })
-    .then(() => {
-/*       let updatedItems = products.map((myItem) => {
-        if (myItem._id === item._id) {
-          myItem = item
-        }
-        return myItem
+    axios
+      .patch(`http://localhost:5000/api/products/${item._id}`, {
+        nrOfItems: item.nrOfItems - 1,
       })
-      setProducts(updatedItems) */
-      console.log('updatedItems'/* , updatedItems */)
-    })
-  }
+      .then(() => {
+        console.log("updatedItems");
+      });
+  };
 
   const handleEditDelete = (item) => {
-    axios.patch(`http://localhost:5000/api/products/${item._id}`, {
-      nrOfItems: item.nrOfItems + 1
-    })
-    .then(() => {
-      console.log('DeleteupdatedItems')
-    })
-  }
-
- /*  const handleEditAll = (products) => {
-    console.log('handleEditAll')
-    axios.patch(`http://localhost:5000/api/products`, { withCredentials: true, products })
-      .then((response) => {
-        console.log('response.data is', response.data)
-        console.log('products are', products)
+    axios
+      .patch(`http://localhost:5000/api/products/${item._id}`, {
+        nrOfItems: item.nrOfItems + 1,
       })
-  } */
+      .then(() => {
+        console.log("DeleteupdatedItems");
+      });
+  };
 
   const handleOrder = () => {
     const result = products
@@ -142,35 +134,33 @@ function App() {
 
     let userInfo = {
       date: date,
-      email: e.target.email.value,
-      name: e.target.name.value,
-      lastname: e.target.lastname.value,
-      street: e.target.street.value,
-      city: e.target.city.value,
+      userEmail: e.target.email.value,
+      userName: e.target.name.value,
+      userLastName: e.target.lastname.value,
+      userStreet: e.target.street.value,
+      userCity: e.target.city.value,
       orderDetails: orderData,
       total: total,
     };
 
-    setUserData([userInfo, ...userData]);
+    axios
+      .post("http://localhost:5000/api/newOrder", userInfo)
+      .then((response) => {
+        setUserData([userInfo, ...userData]);
+      });
     handleShip();
   };
 
   return (
     <div className="app">
-      <Navbar
-        basketItems={basketItems}
-      />
-     
+      <Navbar basketItems={basketItems} />
+
       <Switch>
         <Route
           exact
           path="/"
           render={() => {
-            return (
-              <Home
-                products={products}
-              />
-            );
+            return <Home products={products} />;
           }}
         />
         <Route
@@ -179,11 +169,11 @@ function App() {
           render={(routeProps) => {
             return (
               <Detail2
-              handleEditDelete={handleEditDelete}
-              handleEditAdd={handleEditAdd}
-              products={products}
-              initialState={initialState}
-              handleAddToCart={handleAddToCart}
+                handleEditDelete={handleEditDelete}
+                handleEditAdd={handleEditAdd}
+                products={products}
+                initialState={initialState}
+                handleAddToCart={handleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 {...routeProps}
               />
@@ -203,8 +193,8 @@ function App() {
           render={() => {
             return (
               <Cart
-              handleEditDelete={handleEditDelete}
-              handleEditAdd={handleEditAdd}
+                handleEditDelete={handleEditDelete}
+                handleEditAdd={handleEditAdd}
                 products={products}
                 initialState={initialState}
                 handleAddToCart={handleAddToCart}
@@ -244,7 +234,7 @@ function App() {
           }}
         />
       </Switch>
-      
+
       <Footer />
     </div>
   );
